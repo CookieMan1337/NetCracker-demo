@@ -1,0 +1,25 @@
+<?xml version='1.0' encoding='utf-8'?>
+<!DOCTYPE hibernate-configuration PUBLIC
+        "-//Hibernate/Hibernate Configuration DTD//EN"
+        "http://www.hibernate.org/dtd/hibernate-configuration-3.0.dtd">
+<hibernate-configuration>
+    <session-factory>
+        <mapping class="com.netcracker.model.Item"/>
+        <mapping class="com.netcracker.model.ItemModel"/>
+        <mapping class="com.netcracker.model.Itembodytype"/>
+        <mapping class="com.netcracker.model.User"/>
+        <mapping class="com.netcracker.model.Shop"/>
+        <mapping class="com.netcracker.model.Storage"/>
+        <mapping class="com.netcracker.model.Available"/>
+        <mapping class="com.netcracker.model.UserProfile"/>
+        <mapping class="com.netcracker.model.UserProfileType"/>
+        <mapping class="com.netcracker.model.PersistentLogin"/>
+        <mapping class="com.netcracker.model.Order"/>
+        <mapping class="com.netcracker.model.Purchase"/>
+        <mapping class="com.netcracker.model.PurchaseOrder"/>
+        <!-- <property name="connection.username"/> -->
+        <!-- <property name="connection.password"/> -->
+        <!-- DB schema will be updated if needed -->
+        <!-- <property name="hbm2ddl.auto">update</property> -->
+    </session-factory>
+</hibernate-configuration>

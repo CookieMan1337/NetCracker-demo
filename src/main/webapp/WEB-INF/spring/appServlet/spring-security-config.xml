@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<b:beans xmlns="http://www.springframework.org/schema/security"
+         xmlns:b="http://www.springframework.org/schema/beans"
+         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="
+	http://www.springframework.org/schema/security
+	http://www.springframework.org/schema/security/spring-security.xsd
+	http://www.springframework.org/schema/beans
+	http://www.springframework.org/schema/beans/spring-beans.xsd">
+
+
+    <http realm="JavaStudy example" use-expressions="true" auto-config="true">
+
+        <intercept-url pattern="/resources/**" access="isAnonymous() or isAuthenticated()"/>
+        <intercept-url pattern="/items/**" access="permitAll"/>
+        <intercept-url pattern="/available*/**" access="hasAnyRole('MODER', 'ADMIN')"/>
+        <intercept-url pattern="/shops*/**" access="hasAnyRole('MODER', 'ADMIN')"/>
+        <intercept-url pattern="/storages*/**" access="hasAnyRole('MODER', 'ADMIN')"/>
+        <intercept-url pattern="/itemmodels*/**" access="hasAnyRole('MODER', 'ADMIN')"/>
+        <intercept-url pattern="/bodytypes*/**" access="hasAnyRole('MODER', 'ADMIN')"/>
+        <intercept-url pattern="/users*/**" access="hasRole('ADMIN')"/>
+        <intercept-url pattern="/buy*/**" access="permitAll"/>
+        <intercept-url pattern="/cart*/**" access="permitAll"/>
+        <!--<intercept-url pattern="/login*" access="IS_AUTHENTICATED_ANONYMOUSLY"/>
+
+        <intercept-url pattern="/exitUser*" access="IS_AUTHENTICATED_ANONYMOUSLY"/>
+        <intercept-url pattern="/**" access="ROLE_USER"/>
+        -->
+        <intercept-url pattern="/**" access="permitAll"/>
+        <form-login login-page="/login"
+                    authentication-failure-url="/login?login_error=1"
+                    username-parameter="login"
+                    password-parameter="password"/>
+        <http-basic/>
+        <logout logout-success-url="/"/>
+        <remember-me remember-me-parameter="remember-me" token-repository-ref="tokenRepository"
+                     token-validity-seconds="86400"/>
+        <headers/>
+        <csrf/>
+    </http>
+
+
+    <authentication-manager>
+        <authentication-provider user-service-ref="customUserDetailsService">
+            <password-encoder ref="passwordEncoder"/>
+        </authentication-provider>
+    </authentication-manager>
+
+
+</b:beans>
